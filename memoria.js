@@ -4,11 +4,11 @@ var $game = {
 
 $('#game_options button').click(function(){
 	$game.level = $(this).val();
-	
+
 	game_engine.stop();
 	if ($game.level != 'stop')
 		game_engine.start();
-	
+
 	return false;
 });
 
@@ -24,8 +24,7 @@ var game_engine = function(){
 		var html = '<li><img class="a"/><img class="b h"/></li>',
 		qtde = $game.qtde[$game.level], qtde_orig=qtde*2,
 		arElements = Array();
-
-		
+		$game.level_int = qtde;
 
 		while (qtde--){
 			var $elm = $(html);
@@ -43,46 +42,76 @@ var game_engine = function(){
 		// dica: colocar o timers sempre no final das subs
 		// trick a cada meio segundo
 		_timeout = window.setInterval(_trick, 500);
-		
+
 		window.setTimeout(function(){
 			$images.find('img.b').removeClass('h');
 		}, 25 * arElements.length );
-		
-		
+
+
 	},
 	_toggle_image = function(){
 
 		var $self = $(this), val = $self.attr('data-num');
 		if ($self.hasClass('solved')) return false;
-		
+		if ($self.hasClass('selected')) return false;
+
 		if ($game.last_click == val){
 
-			$images.find('li[data-num='+val+']').addClass('solved').find('img.b').attr('css','');
+			$images.find('li[data-num='+val+']').addClass('solved').find('img.b').removeAttr('css');
+			$self.removeClass('selected');
+
+			$game.last_item.removeClass('selected');
+			$self.removeClass('selected');
+
 			$game.last_click = -1;
-			console.log("acertou");
+
+			$game.acertos++;
+
+			if ($game.level_int == $game.acertos){
+
+				$game.win_on = new Date();
+				$game.winner = true;
+
+
+			}
+
 		}else if ($game.last_click > -1 && $game.last_click != val){
 			$game.erros++;
 			$game.last_click = -1;
-			console.log("errou");
+
 			$images.find('img.b').removeClass('h');
+
+			$game.last_item.removeClass('selected');
+			$self.removeClass('selected');
+
 		}else{
-			console.log("mostrar label");
+
+			$self.addClass('selected');
 			$self.find('img.b').addClass('h');
-			
+
+			$game.last_item = $self;
 			$game.last_click = val;
+
 		}
-		
+
+		return true;
 	},
 	_trick = function (){
-		
+
 		_display_time();
-		
+
 
 	},
 	_display_time = function(){
 
-		$timeout.text( parseInt((new Date() - $game[start_time]) / 1000) + 's');
-		
+		if ($game.winner)
+		{
+			$timeout.text( 'venceu em ' + parseInt(($game['win_on'] - $game[start_time]) / 1000) + 's');
+		}else{
+			$timeout.text( parseInt((new Date() - $game[start_time]) / 1000) + 's');
+		}
+
+
 	},
 	__shuffle = function (list) {
 		var i, j, t, l = list.length;
@@ -98,15 +127,18 @@ var game_engine = function(){
 	_stop = function (){
 
 		window.clearTimeout(_timeout);
-		
+
 		// matando os filhos "com estilo"
 		$images.html('');
-		
+
 		// reseta o tempo
 		$timeout.text('0');
 
 		$game.last_click = -1;
 		$game.erors = 0;
+		$game.acertos = 0;
+		$game.level_int = 0;
+		$game.winner = false;
 	},
 	_load_compleate = function(){
 		$images.find('li').live('click', _toggle_image);
