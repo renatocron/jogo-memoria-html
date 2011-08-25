@@ -66,14 +66,15 @@ var game_engine = function(){
 
 			$game.last_click = -1;
 
-			$game.acertos++;
+			$game.correct++;
 
-			if ($game.level_int == $game.acertos){
+			if ($game.level_int == $game.correct){
 
 				$game.win_on = new Date();
 				$game.winner = true;
-
-
+				
+				window.clearTimeout(_timeout);
+				_trick();
 			}
 
 		}else if ($game.last_click > -1 && $game.last_click != val){
@@ -89,7 +90,7 @@ var game_engine = function(){
 				$game.last_item.removeClass('selected');
 				$self.removeClass('selected');
 				$images.find('img.b').removeClass('h');
-			}, 300);
+			}, 120);
 
 		}else{
 
@@ -143,7 +144,7 @@ var game_engine = function(){
 
 		$game.last_click = -1;
 		$game.erors = 0;
-		$game.acertos = 0;
+		$game.correct = 0;
 		$game.level_int = 0;
 		$game.winner = false;
 		$game.can_click = true;
