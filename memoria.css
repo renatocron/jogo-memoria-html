@@ -43,16 +43,20 @@ table {
 }
 /********************************************************************************/
 #images li {
-	display: block;
+	display: inline-block;
 	height: 100px;
 	width: 100px;
-	float:left;
+	border: 2px solid #000;
+	margin: 5px;
+
 }
 
 #images img {
-	position:absolute;
-	height: 80px;
-	width: 80px;
+	display: block;
+	
+	height: 75px;
+	width: 75px;
+	margin: 12px;
 }
 
 #images img.a {
@@ -61,13 +65,22 @@ table {
 }
 
 #images img.b {
-	background: url("dot_s.png") no-repeat scroll 0 0 white;
+	background: url("dot_s.png") no-repeat scroll 15px 12px white;
 	z-index: 10;
+	margin-top: -87px;
+	opacity: 0.5;
 }
 #images img.h {display:none}
 
 #images li.solved img.b {
 	display: none !important;
+}
+
+#game {
+	margin: 0 auto;
+	width: 80%;
+	text-align: center;
+
 }
 
 
