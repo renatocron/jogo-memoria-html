@@ -41,6 +41,13 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+/*********/
+body {
+	font: 14px/1.375em Palatino, "Palatino Linotype", "Book Antiqua", serif;
+	color: white;
+
+	background: url("http://perfectword.renatocron.com/static/images/pattern.gif") repeat fixed right bottom #121212;
+}
 /********************************************************************************/
 #images li {
 	display: inline-block;
@@ -68,7 +75,6 @@ table {
 	background: url("dot_s.png") no-repeat scroll 15px 12px white;
 	z-index: 10;
 	margin-top: -87px;
-	opacity: 0.5;
 }
 #images img.h {display:none}
 
@@ -80,17 +86,57 @@ table {
 	margin: 0 auto;
 	width: 80%;
 	text-align: center;
+}
 
+#images li.selected {
+	border: 2px solid #FFF;
+}
+
+.btn {
+	border:1px solid #222;
+	margin: 5px;
+	text-transform: uppercase;
+
+	background: #222 url(alert-overlay.png) repeat-x;
+	background-color: #222;
+
+	display: inline-block;
+	padding: 5px 10px 6px;
+	color: #FFF;
+	text-decoration: none;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+	position: relative;
+	cursor: pointer;
 }
 
 
+.btn:hover	{ background-color: #111; -webkit-transition: background-color 500ms ease-in-out; }
+.btn:active	{ top: 1px; }
 
+.btn,
+.medium.btn { font-size: 13px; font-weight: bold; line-height: 1; text-shadow: 0 -1px 1px rgba(0,0,0,0.25); }
+.large.btn 	{ font-size: 14px; padding: 8px 14px 9px; }
 
+.green.btn { background-color: #91bd09; }
+.green.btn:hover{ background-color: #749a02; }
 
+.blue.btn{ background-color: #2daebf; }
+.blue.btn:hover	{ background-color: #007d9a; }
 
+.red.btn { background-color: #e33100; }
+.red.btn:hover	{ background-color: #F00; }
 
+.orange.btn{ background-color: #ff5c00; }
+.orange.btn:hover { background-color: #d45500; }
 
-
+.yellow.btn{ background-color: #ffb515; }
+.yellow.btn:hover { background-color: #fc9200; }
+ 
 
 
 

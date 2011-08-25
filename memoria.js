@@ -19,6 +19,8 @@ var game_engine = function(){
 
 	_timeout = 0,
 	$timeout = $('#time_elapsed'),
+	$errors  = $('#errors'),
+	$points  = $('#points'),
 	_start = function(){
 		$game[start_time] = new Date();
 		var html = '<li><img class="a"/><img class="b h"/></li>',
@@ -84,13 +86,13 @@ var game_engine = function(){
 
 			window.setTimeout(function(){
 				$game.can_click = true;
-				$game.erros++;
+				$game.errors++;
 				$game.last_click = -1;
 				
 				$game.last_item.removeClass('selected');
 				$self.removeClass('selected');
 				$images.find('img.b').removeClass('h');
-			}, 120);
+			}, 140);
 
 		}else{
 
@@ -118,6 +120,8 @@ var game_engine = function(){
 			$timeout.text( 'venceu em ' + parseInt(($game['win_on'] - $game[start_time]) / 1000) + 's');
 		}else{
 			$timeout.text( parseInt((new Date() - $game[start_time]) / 1000) + 's');
+			$errors.text( $game.errors );
+			$points.text( ($game.correct * 3) - ($game.errors * 2) );
 		}
 
 
@@ -144,11 +148,12 @@ var game_engine = function(){
 		$timeout.text('0');
 
 		$game.last_click = -1;
-		$game.erors = 0;
+		$game.errors = 0;
 		$game.correct = 0;
 		$game.level_int = 0;
 		$game.winner = false;
 		$game.can_click = true;
+		
 	},
 	_load_compleate = function(){
 		$images.find('li').live('click', _toggle_image);
