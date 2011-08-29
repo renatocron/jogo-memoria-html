@@ -50,20 +50,40 @@ body {
 }
 /********************************************************************************/
 #images li {
+	cursor: pointer;
 	display: inline-block;
-	height: 100px;
-	width: 100px;
-	border: 2px solid #000;
+	height: 90px;
+	width: 90px;
+	border: 2px solid gray;
 	margin: 5px;
 
+	background-color: #ddd;
+	background-color: rgba(255, 255, 255, 0.4)!important;
+	border-radius: 10px;
+
+	box-shadow: 0px 0px 8px #000;
+	-moz-box-shadow: 0px 0px 8px #000;
+	-webkit-box-shadow: 0px 0px 8px #000;
+
+	-moz-transition: all 1000ms ease-in;
+	-webkit-transition: all 1000ms ease-in;
+	transition: all 1000ms ease-in;
+}
+
+#images li:hover{
+	background-color: #eee;
+	background-color: rgba(255, 255, 255, 0.6)!important;
+	-webkit-transition: background-color 100ms ease-in;
+	-moz-transition: background-color 100ms ease-in;
+	transition: background-color 100ms ease-in;
 }
 
 #images img {
 	display: block;
-	
+
 	height: 75px;
 	width: 75px;
-	margin: 12px;
+	margin: 7.6px;
 }
 
 #images img.a {
@@ -74,7 +94,7 @@ body {
 #images img.b {
 	background: url("dot_s.png") no-repeat scroll 15px 12px white;
 	z-index: 10;
-	margin-top: -87px;
+	margin-top: -82.6px;
 }
 #images img.h {display:none}
 
@@ -88,9 +108,32 @@ body {
 	text-align: center;
 }
 
+
 #images li.selected {
 	border: 2px solid #FFF;
+	background-color: #FFF;
+	background-color: #FFF!important;
+
+	-webkit-transition: all 1000ms ease-in;
+	-moz-transition: all 1000ms ease-in;
+	transition: all 1000ms ease-in;
 }
+
+#images li.solved {
+	background-color: #FFF!important;
+	border-color: black;
+	cursor: default!important;
+
+
+	box-shadow: 0 0 8px #FFF;
+	-moz-box-shadow: 0px 0px 8px #FFF;
+	-webkit-box-shadow: 0px 0px 8px #FFF;
+
+	-webkit-transition: all 1000ms ease-in;
+	-moz-transition: all 1000ms ease-in;
+	transition: all 1000ms ease-in;
+}
+
 
 .btn {
 	border:1px solid #222;
@@ -106,8 +149,12 @@ body {
 	text-decoration: none;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
+	border-radius: 5px;
+
 	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+
 	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
 	border-bottom: 1px solid rgba(0,0,0,0.25);
 	position: relative;
@@ -115,7 +162,11 @@ body {
 }
 
 
-.btn:hover	{ background-color: #111; -webkit-transition: background-color 500ms ease-in-out; }
+.btn:hover	{ background-color: #111;
+-webkit-transition: background-color 500ms ease-in-out;
+-moz-transition: background-color 500ms ease-in-out;
+transition: background-color 500ms ease-in-out;
+}
 .btn:active	{ top: 1px; }
 
 .btn,
@@ -136,15 +187,18 @@ body {
 
 .yellow.btn{ background-color: #ffb515; }
 .yellow.btn:hover { background-color: #fc9200; }
- 
 
 
 
+#status_bar {padding: 5px; width: 520px; overflow: auto; clear: both; margin: 0 auto;}
+#status_bar dt {display: block; border-bottom: 1px solid #eee; }
+#status_bar dt, #status_bar dd {width: 100%; float:left;}
 
+#status_bar div {
+    float: left;
+    width: 130px;
 
-
-
-
+}
 
 
 

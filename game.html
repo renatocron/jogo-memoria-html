@@ -29,13 +29,21 @@
 						<button type="submit" class="btn" name="level" value="stop">DESISTIR</button>
 					</form>
 
-					<span id="time_elapsed">0</span>
-					<span id="errors">0</span>
-					<span id="points">0</span>
+					<div id="status_bar">
+						<dl>
+							<div><dt>Tempo</dt>
+							<dd><p id="time_elapsed">0</p></dd></div>
+							<div><dt>Erros</dt>
+							<dd><p id="errors">0</p></dd></div>
+							<div><dt>Acertos</dt>
+							<dd><p id="corrects">0</p></dd></div>
+							<div><dt>Pontos</dt>
+							<dd><p id="points">0</p></dd></div>
+						</dl>
+					</div>
 
-					<ul id="images">
 
-					</ul>
+					<ul id="images"></ul>
 
 				</div>
 
@@ -44,7 +52,6 @@
 		</div>
 	</div><!-- end outer -->
 
-<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script type="text/javascript" src="memoria.js"></script>
 

@@ -20,7 +20,9 @@ var game_engine = function(){
 	_timeout = 0,
 	$timeout = $('#time_elapsed'),
 	$errors  = $('#errors'),
+	$corrects = $('#corrects'),
 	$points  = $('#points'),
+
 	_start = function(){
 		$game[start_time] = new Date();
 		var html = '<li><img class="a"/><img class="b h"/></li>',
@@ -30,7 +32,7 @@ var game_engine = function(){
 
 		while (qtde--){
 			var $elm = $(html);
-			$elm.find('img.a').css('background-color', 'rgb(' + (parseInt(Math.random() * 250)) + ', '+(parseInt(Math.random() * 250))+', '+(parseInt(Math.random() * 250))+')');
+			$elm.find('img.a').css('background-color', __random_color('hex') );
 			$elm.attr('data-num', qtde);
 
 			arElements.push($elm);
@@ -42,18 +44,18 @@ var game_engine = function(){
 		}
 
 		// dica: colocar o timers sempre no final das subs
-		// trick a cada meio segundo
+		// trick a cada meio segundo // porem acho que isso nao faz diferenca alguma!
 		_timeout = window.setInterval(_trick, 500);
 
 		window.setTimeout(function(){
 			$images.find('img.b').removeClass('h');
-		}, 25 * arElements.length );
+		}, 32 * arElements.length );
 
 
 	},
 	_toggle_image = function(){
 		if ($game.can_click == false) return false;
-		
+
 		var $self = $(this), val = $self.attr('data-num');
 		if ($self.hasClass('solved')) return false;
 		if ($self.hasClass('selected')) return false;
@@ -74,7 +76,7 @@ var game_engine = function(){
 
 				$game.win_on = new Date();
 				$game.winner = true;
-				
+
 				window.clearTimeout(_timeout);
 				_trick();
 			}
@@ -88,7 +90,7 @@ var game_engine = function(){
 				$game.can_click = true;
 				$game.errors++;
 				$game.last_click = -1;
-				
+
 				$game.last_item.removeClass('selected');
 				$self.removeClass('selected');
 				$images.find('img.b').removeClass('h');
@@ -104,7 +106,7 @@ var game_engine = function(){
 
 		}
 		_display_time();
-		
+
 		return true;
 	},
 	_trick = function (){
@@ -120,11 +122,21 @@ var game_engine = function(){
 			$timeout.text( 'venceu em ' + parseInt(($game['win_on'] - $game[start_time]) / 1000) + 's');
 		}else{
 			$timeout.text( parseInt((new Date() - $game[start_time]) / 1000) + 's');
-			$errors.text( $game.errors );
-			$points.text( ($game.correct * 3) - ($game.errors * 2) );
 		}
 
+		$errors.text( $game.errors );
+		$corrects.text( $game.correct );
+		$points.text( __points() );
 
+
+
+	},
+	__points = function (){
+
+		var time = ( (new Date() - $game[start_time]) / (10000 * $game.level_int)),
+		calk = ($game.correct  / (time + 1)) - $game.errors;
+
+		return calk < 0 ? $game.correct * 100 : parseInt((calk + $game.correct) * 100 ) ;
 	},
 	__shuffle = function (list) {
 		var i, j, t, l = list.length;
@@ -137,6 +149,24 @@ var game_engine = function(){
 			}
 		}
 	},
+	__random_color = function(format){
+
+		 var rint = Math.round(0xffffff * Math.random());
+		 switch(format)
+		 {
+		  case 'hex':
+		   return "#"+("000"+(Math.random()*(1<<24)|0).toString(16)).substr(-6);
+		  break;
+
+		  case 'rgb':
+		   return 'rgb(' + (rint >> 16) + ',' + (rint >> 8 & 255) + ',' + (rint & 255) + ')';
+		  break;
+
+		  default:
+		   return rint;
+		  break;
+		 }
+	}
 	_stop = function (){
 
 		window.clearTimeout(_timeout);
@@ -153,7 +183,7 @@ var game_engine = function(){
 		$game.level_int = 0;
 		$game.winner = false;
 		$game.can_click = true;
-		
+
 	},
 	_load_compleate = function(){
 		$images.find('li').live('click', _toggle_image);
