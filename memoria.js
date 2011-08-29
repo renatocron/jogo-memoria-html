@@ -192,11 +192,4 @@ var game_engine = function(){
 	return {start: _start, stop: _stop, wload: _load_compleate};
 }(window);
 
-//$(game_engine.wload);
-game_engine.wload();
-
-$game.level = 'easy';
-
-game_engine.stop();
-if ($game.level != 'stop')
-	game_engine.start();
+$(game_engine.wload);

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="memoria.css" />
+	<meta charset='utf-8'/>
+	<title>Jogo da memoria feito pelo Renato CRON</title>
+</head>
+<body class="checkered">
+	<h1>Jogo da mémoria colorido!</h1>
+
+	<div id="game">
+	Escolha um nível e divirta-se!
+	<form id="game_options">
+		<button type="submit" class="orange btn" name="level" value="easy">Fácil</button>
+		<button type="submit" class="yellow btn" name="level" value="normal">Normal</button>
+		<button type="submit" class="blue btn" name="level" value="hard">Díficil</button>
+		<button type="submit" class="btn red" name="level" value="complex">Insano</button>
+		<button type="submit" class="btn" name="level" value="stop">DESISTIR</button>
+	</form>
+
+	<div id="status_bar">
+		<dl>
+			<div><dt>Tempo</dt>
+				<dd><p id="time_elapsed">0s</p></dd></div>
+			<div><dt>Erros</dt>
+				<dd><p id="errors">0</p></dd></div>
+			<div><dt>Acertos</dt>
+				<dd><p id="corrects">0</p></dd></div>
+			<div><dt>Pontos</dt>
+				<dd><p id="points">0</p></dd></div>
+		</dl>
+	</div>
+	<ul id="images"></ul>
+
+	</div>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript" src="memoria.js"></script>
+</body>
+</html>

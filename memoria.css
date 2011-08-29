@@ -46,8 +46,29 @@ body {
 	font: 14px/1.375em Palatino, "Palatino Linotype", "Book Antiqua", serif;
 	color: white;
 
-	background: url("http://perfectword.renatocron.com/static/images/pattern.gif") repeat fixed right bottom #121212;
+	background-color: #333;
 }
+.checkered {
+
+	background-size: 30px 8px, 120px 8px;
+
+	background-color:#000;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, transparent), color-stop(.5, rgba(40, 40, 40, .5)), to(rgba(40, 40, 40, .5))),
+					  -webkit-gradient(linear, 0 0, 100% 0, color-stop(.5, transparent), color-stop(.5, rgba(40, 40, 40, .5)), to(rgba(40, 40, 40, .5)));
+	background-image: -webkit-linear-gradient(transparent 50%, rgba(40, 40, 40, .5) 50%, rgba(40, 40, 40, .5)),
+				-webkit-linear-gradient(0deg, transparent 50%, rgba(40, 40, 40, .5) 50%, rgba(40, 40, 40, .5));
+
+	background-image: -moz-linear-gradient(transparent 50%, rgba(40, 40, 40, .5) 50%, rgba(40, 40, 40, .5)),
+				-moz-linear-gradient(0deg, transparent 50%, rgba(40, 40, 40, .5) 50%, rgba(40, 40, 40, .5));
+
+	background-image: -ms-linear-gradient(transparent 50%, rgba(40, 40, 40, .5) 50%, rgba(40, 40, 40, .5)),
+				-ms-linear-gradient(0deg, transparent 50%, rgba(40, 40, 40, .5) 50%, rgba(40, 40, 40, .5));
+	background-image: -o-linear-gradient(transparent 50%, rgba(40, 40, 40, .5) 50%, rgba(40, 40, 40, .5)),
+				-o-linear-gradient(0deg, transparent 50%, rgba(40, 40, 40, .5) 50%, rgba(40, 40, 40, .5));
+	background-image: linear-gradient(transparent 50%, rgba(40, 40, 40, .5) 50%, rgba(40, 40, 40, .5)),
+				linear-gradient(0deg, transparent 50%, rgba(40, 40, 40, .5) 50%, rgba(40, 40, 40, .5));
+}
+h1 {font-size: 1.2em;text-align: center;}
 /********************************************************************************/
 #images li {
 	cursor: pointer;
@@ -96,6 +117,21 @@ body {
 	z-index: 10;
 	margin-top: -82.6px;
 }
+/* too son! nao consegui fazer =X
+img.b:after  {
+    content: '?';
+    font-size: 65px;
+    background-color: white;
+    width: 75px;
+    height: 75px;
+    display: block;
+    color: black;
+    font-size: 65px;
+    line-height: 70px;
+}
+*/
+
+
 #images img.h {display:none}
 
 #images li.solved img.b {
